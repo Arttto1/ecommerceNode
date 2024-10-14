@@ -1,0 +1,43 @@
+<%- include("../includes/head"), {pageTitle: "Signup"} %>
+<link rel="stylesheet" href="/styles/forms.css">
+<link rel="stylesheet" href="/styles/auth.css">
+</head>
+<body>
+    <%- include("../includes/header") %>
+    <main>
+        <h1>Create account</h1>
+        <form action="" method="">
+            <div id="emailDiv">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div id="confirmEmailDiv">
+                <label for="confirm-email">Confirm email:</label>
+                <input type="email" name="confirm-email" id="confirm-email" required>
+            </div>
+            <div id="passwordDiv">
+                <label for="password">Password:</label>
+                <input type="password" name="password" minlength="6" required>
+            </div>
+            <hr>
+            <div id="fullnameDiv">
+                <label for="fulllname">Full name:</label>
+                <input type="text" name="fullname" id="fullname" required>
+            </div>
+            <div id="streetDiv">
+                <label for="street">Street:</label>
+                <input type="text" name="street" id="street" required>
+            </div>
+            <div id="postalDiv">
+                <label for="postal">Postal code:</label>
+                <input type="text" name="postal" id="postal" required >
+            </div>
+            <div id="cityDiv">
+                <label for="city">City:</label>
+                <input type="text" name="city" id="city">
+            </div>
+            <button class="btn">Create account</button>
+            <p id="loginInstead"><a href="/login">Login instead</a></p>
+        </form>
+    </main>
+<%- include("../includes/footer") %>
