@@ -1,0 +1,15 @@
+<%- include("../../base/includes/head", {pageTitle: "Products"}) %>
+</head>
+<body>
+    <%- include("../../base/includes/header") %>
+    <main>
+        <h1>Products</h1>
+        <ul>
+            <% for (const product of products) {%>
+                <li>
+                    <%- include("../../base/includes/product-item", { product: product}) %>
+                </li>
+                <% } %>
+            </ul>
+    </main>
+<%- include("../../base/includes/footer") %>

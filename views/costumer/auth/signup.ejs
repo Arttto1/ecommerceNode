@@ -1,43 +1,51 @@
-<%- include("../includes/head"), {pageTitle: "Signup"} %>
+<%- include("../../base/includes/head", {pageTitle: "signup"}) %>
 <link rel="stylesheet" href="/styles/forms.css">
 <link rel="stylesheet" href="/styles/auth.css">
 </head>
 <body>
-    <%- include("../includes/header") %>
+    <%- include("../../base/includes/header") %>
     <main>
         <h1>Create account</h1>
-        <form action="" method="">
+        <% if (inputData.errorMessage) { %>
+            <section class="alert">
+                <h2><%= inputData.errorMessage %></h2>
+            </section>
+            <% } %>
+        <form action="/signup" method="POST">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
             <div id="emailDiv">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= inputData.email %>" required>
             </div>
             <div id="confirmEmailDiv">
                 <label for="confirm-email">Confirm email:</label>
-                <input type="email" name="confirm-email" id="confirm-email" required>
+                <input type="email" name="confirm-email" id="confirm-email" value="<%= inputData.confirmEmail %>" required>
             </div>
             <div id="passwordDiv">
                 <label for="password">Password:</label>
-                <input type="password" name="password" minlength="6" required>
+                <input type="password" name="password" id="password" value="<%= inputData.password %>" minlength="6" required>
             </div>
             <hr>
             <div id="fullnameDiv">
-                <label for="fulllname">Full name:</label>
-                <input type="text" name="fullname" id="fullname" required>
+                <label for="fullname">Full name:</label>
+                <input type="text" name="fullname" id="fullname" value="<%= inputData.fullname %>" required>
             </div>
             <div id="streetDiv">
                 <label for="street">Street:</label>
-                <input type="text" name="street" id="street" required>
+                <input type="text" name="street" id="street" value="<%= inputData.street %>" required>
             </div>
             <div id="postalDiv">
                 <label for="postal">Postal code:</label>
-                <input type="text" name="postal" id="postal" required >
+                <input type="text" name="postal" id="postal" value="<%= inputData.postal %>" required >
             </div>
             <div id="cityDiv">
                 <label for="city">City:</label>
-                <input type="text" name="city" id="city">
+                <input type="text" name="city" id="city" value="<%= inputData.city %>" required>
             </div>
-            <button class="btn">Create account</button>
-            <p id="loginInstead"><a href="/login">Login instead</a></p>
+            <div class="btnDiv">
+                <button class="btn">Create account</button>
+                <p id="loginInstead"><a href="/login">Login instead</a></p>
+            </div>
         </form>
     </main>
-<%- include("../includes/footer") %>
+<%- include("../../base/includes/footer") %>

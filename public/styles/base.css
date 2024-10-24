@@ -36,6 +36,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
 html {
@@ -45,4 +46,62 @@ html {
 body {
     background-color: var(--color-gray-500);
     color: var(--color-gray-100);
+}
+
+main {
+    width: 90%;
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary-400);
+}
+
+a:hover,
+a:active {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+}
+
+.btn {
+    padding: var(--space-1) var(--space-2);
+    border: none;
+    border-radius: var(--border-radius-small);
+    background-color: var(--color-primary-500);
+    color: var(--color-primary-500-contrast);
+    font: inherit;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: var(--color-primary-700);
+    cursor: pointer;
+}
+
+label {
+    margin-bottom: var(--space-1);
+    margin-top: var(--space-2);
+}
+
+input {
+    margin-bottom: var(--space-2);
+}
+
+.alert {
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--color-primary-400);
+    margin-top: var(--space-4);
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
 }

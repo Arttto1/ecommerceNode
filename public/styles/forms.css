@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+    color: var(--color-gray-300);
+}
+
+form {
+    max-width: 25rem;
+    margin: var(--space-8) auto;
+    padding: var(--space-4);
+    background-color: var(--color-gray-300);
+    border-radius: var(--border-radius-medium);
+
+    input{
+        border-radius: var(--border-radius-small);
+        border: none;
+        height: 1.5rem;
+    }
+}
+
+.btnDiv {
+    align-items: center;
+}
+
+.btn {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+}
