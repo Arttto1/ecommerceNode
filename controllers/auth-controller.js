@@ -17,7 +17,7 @@ function getSignup(req, res) {
       city: "",
     }
   }
-  res.render("costumer/auth/signup", {inputData: sessionData});
+  res.render("customer/auth/signup", {inputData: sessionData});
 }
 
 async function postSignup(req, res, next) {
@@ -90,7 +90,7 @@ function getLogin(req, res) {
       password: "",
     }
   }
-  res.render("costumer/auth/login", {inputData: sessionData});
+  res.render("customer/auth/login", {inputData: sessionData});
 }
 
 async function postLogin(req, res, next) {

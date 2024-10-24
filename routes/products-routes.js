@@ -6,4 +6,6 @@ const router = express.Router()
 
 router.get("/products", productsController.getProductsPage)
 
+router.get("/products/:id", productsController.getProductDetais)
+
 module.exports = router
