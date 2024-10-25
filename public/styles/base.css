@@ -101,6 +101,14 @@ input {
     margin-top: var(--space-4);
 }
 
+.badge {
+    margin-left: var(--space-2);
+    padding: 0.15rem var(--space-4);
+    border-radius: 10rem;
+    background-color: var(--color-primary-500);
+    color: var(--color-primary-500-contrast);
+}
+
 form div {
     display: flex;
     flex-direction: column;
