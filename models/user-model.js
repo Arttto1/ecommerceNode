@@ -14,6 +14,8 @@ class User {
     };
   }
 
+  static async findById(userId) {}
+
   getUserByEmail() {
     return db.getDb().collection("users").findOne({ email: this.email });
   }
