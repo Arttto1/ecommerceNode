@@ -9,6 +9,7 @@ const db = require("./data/database");
 
 const { validateCsrfToken, addCsrfToken} = require("./middlewares/csrf-token")
 
+const notFoundMiddleware = require("./middlewares/not-found")
 const errorHandlerMiddleware = require("./middlewares/error-handler")
 const protectRoutesMiddleware = require("./middlewares/protect-routes")
 const cartMiddleware = require("./middlewares/cart")
@@ -53,10 +54,10 @@ app.use(baseRoutes)
 app.use(authRoutes);
 app.use(productsRoutes)
 app.use("/cart", cartRoutes)
-app.use(protectRoutesMiddleware)
-app.use("/orders", ordersRoutes)
-app.use("/admin", adminRoutes)
+app.use("/orders", protectRoutesMiddleware, ordersRoutes)
+app.use("/admin", protectRoutesMiddleware, adminRoutes)
 
+app.use(notFoundMiddleware)
 
 app.use(errorHandlerMiddleware)
 

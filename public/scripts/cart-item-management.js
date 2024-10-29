@@ -1,51 +1,59 @@
-const cartItemUpdateFormElements = document.querySelectorAll(".cart-item-management")
-const cartTotalPriceElement = document.getElementById("cart-total-price")
-const cartBadge = document.querySelector(".badge")
+const cartItemUpdateFormElements = document.querySelectorAll(
+  ".cart-item-management"
+);
+const cartTotalPriceElement = document.getElementById("cart-total-price");
+const cartBadges = document.querySelectorAll(".badge");
 
 async function updateCartItem(event) {
-    event.preventDefault()
+  event.preventDefault();
 
-    const form = event.target
+  const form = event.target;
 
-    const productId = form.dataset.productid
-    const csrfToken = form.dataset.csrf
-    const quantity = form.firstElementChild.value
+  const productId = form.dataset.productid;
+  const csrfToken = form.dataset.csrf;
+  const quantity = form.firstElementChild.value;
 
-    let response
-    try {
-        response = await fetch("/cart/items", {
-        method: "PATCH",
-        body: JSON.stringify({
-            productId: productId,
-            quantity: quantity,
-            _csrf: csrfToken
-        }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    } catch (error) {
-        return alert("something went wrong!")
+  let response;
+  try {
+    response = await fetch("/cart/items", {
+      method: "PATCH",
+      body: JSON.stringify({
+        productId: productId,
+        quantity: quantity,
+        _csrf: csrfToken,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    return alert("something went wrong!");
+  }
+
+  if (!response.ok) {
+    return alert("something went wrong!");
+  }
+
+  const responseData = await response.json();
+
+  if (responseData.updatedCartData.updatedItemPrice === 0) {
+    form.parentElement.parentElement.remove();
+  }
+
+  const cartItemTotalPriceElement =
+    form.parentElement.querySelector(".cart-item-price");
+  cartItemTotalPriceElement.textContent =
+    responseData.updatedCartData.updatedItemPrice.toFixed(2);
+
+  cartTotalPriceElement.textContent =
+    responseData.updatedCartData.newTotalPrice.toFixed(2);
+
+    for (const cartBadge of cartBadges) {
+        cartBadge.textContent = responseData.updatedCartData.newTotalQuantity;
     }
-    
-    if (!response.ok) {
-        return alert("something went wrong!")
-    }
-
-    const responseData = await response.json()
-
-    if (responseData.updatedCartData.updatedItemPrice === 0) {
-        form.parentElement.parentElement.remove()
-    }
-
-    const cartItemTotalPriceElement = form.parentElement.querySelector(".cart-item-price")
-    cartItemTotalPriceElement.textContent = responseData.updatedCartData.updatedItemPrice.toFixed(2)
-
-    cartTotalPriceElement.textContent = responseData.updatedCartData.newTotalPrice.toFixed(2)
-
-    cartBadge.textContent = responseData.updatedCartData.newTotalQuantity
+  
 }
 
-for ( const formElement of cartItemUpdateFormElements) {
-    formElement.addEventListener("submit", updateCartItem)
+for (const formElement of cartItemUpdateFormElements) {
+  formElement.addEventListener("submit", updateCartItem);
 }
